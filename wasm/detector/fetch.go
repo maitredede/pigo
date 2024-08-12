@@ -3,7 +3,7 @@ package detector
 import (
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"syscall/js"
@@ -94,7 +94,7 @@ func (d *Detector) ParseCascade(path string) ([]byte, error) {
 	}
 	defer resp.Body.Close()
 
-	buffer, err := ioutil.ReadAll(resp.Body)
+	buffer, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
